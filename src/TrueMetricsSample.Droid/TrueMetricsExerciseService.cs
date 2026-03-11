@@ -23,86 +23,22 @@ namespace TrueMetricsSample.Droid
         static TruemetricsSdk _sdk;
         static ForegroundNotificationFactoryImpl _notifFactory;
 
-        static Task RunOnMainThreadAsync(Action action)
+        static async Task<T> RunSdkAsync<T>(Func<T> func, int timeoutMs)
         {
-            if (Looper.MyLooper() == Looper.MainLooper)
+            var task = Task.Run(func);
+            var completed = await Task.WhenAny(task, Task.Delay(timeoutMs)).ConfigureAwait(false);
+            if (completed != task)
+                throw new TimeoutException("SDK call timed out (" + timeoutMs + "ms)");
+            return await task.ConfigureAwait(false);
+        }
+
+        static Task RunSdkAsync(Action action, int timeoutMs)
+        {
+            return RunSdkAsync(() =>
             {
                 action();
-                return Task.CompletedTask;
-            }
-
-            var tcs = new TaskCompletionSource<bool>();
-            new Android.OS.Handler(Looper.MainLooper).Post(() =>
-            {
-                try
-                {
-                    action();
-                    tcs.TrySetResult(true);
-                }
-                catch (Exception ex)
-                {
-                    tcs.TrySetException(ex);
-                }
-            });
-            return tcs.Task;
-        }
-
-        static Task<T> RunOnMainThreadAsync<T>(Func<T> func)
-        {
-            if (Looper.MyLooper() == Looper.MainLooper)
-            {
-                return Task.FromResult(func());
-            }
-
-            var tcs = new TaskCompletionSource<T>();
-            new Android.OS.Handler(Looper.MainLooper).Post(() =>
-            {
-                try
-                {
-                    tcs.TrySetResult(func());
-                }
-                catch (Exception ex)
-                {
-                    tcs.TrySetException(ex);
-                }
-            });
-            return tcs.Task;
-        }
-
-        /// <summary>
-        /// Reads the current SDK Status object from the main thread and returns summary text.
-        /// Status is a Kotlin sealed class; we use Java type checks to identify the subtype.
-        /// </summary>
-        static async Task<(string name, Status status)> GetCurrentStatusAsync()
-        {
-            return await RunOnMainThreadAsync<(string name, Status status)>(() =>
-            {
-                if (_sdk == null) return ("SDK=null", null);
-
-                // The Status is exposed via the static field 'n' which is the singleton
-                // But we need to read the status from the SDK instance
-                // The SDK doesn't expose a direct getStatus() in the C# binding, but we can check properties
-                try
-                {
-                    var isRecording = _sdk.IsRecordingInProgress;
-                    var isStopped = _sdk.IsRecordingStopped;
-                    var deviceId = _sdk.DeviceId;
-                    var startTime = _sdk.RecordingStartTime;
-
-                    if (isRecording)
-                        return ("RecordingInProgress", null);
-                    if (isStopped)
-                        return ("RecordingStopped", null);
-                    if (!string.IsNullOrEmpty(deviceId))
-                        return ("Initialized", null);
-
-                    return ("Unknown", null);
-                }
-                catch (Exception ex)
-                {
-                    return ("Error: " + ex.Message, null);
-                }
-            }).ConfigureAwait(false);
+                return true;
+            }, timeoutMs);
         }
 
         static string SnapshotStateUnsafe()
@@ -125,29 +61,7 @@ namespace TrueMetricsSample.Droid
 
         static Task<string> SnapshotStateAsync()
         {
-            return RunOnMainThreadAsync(() => SnapshotStateUnsafe());
-        }
-
-        static async Task<bool> WaitForAsync(Func<bool> predicate, int timeoutMs, int pollMs)
-        {
-            var start = System.Diagnostics.Stopwatch.StartNew();
-            while (start.ElapsedMilliseconds < timeoutMs)
-            {
-                if (predicate()) return true;
-                await Task.Delay(pollMs).ConfigureAwait(false);
-            }
-            return predicate();
-        }
-
-        static async Task<bool> WaitForAsync(Func<Task<bool>> predicate, int timeoutMs, int pollMs)
-        {
-            var start = System.Diagnostics.Stopwatch.StartNew();
-            while (start.ElapsedMilliseconds < timeoutMs)
-            {
-                if (await predicate().ConfigureAwait(false)) return true;
-                await Task.Delay(pollMs).ConfigureAwait(false);
-            }
-            return await predicate().ConfigureAwait(false);
+            return Task.Run(() => SnapshotStateUnsafe());
         }
 
         /// <summary>
@@ -250,19 +164,18 @@ namespace TrueMetricsSample.Droid
                 // The native sample uses Config(apiKey, foregroundNotification, debug=true) which
                 // auto-starts recording. The SdkConfiguration.Builder equivalent is to use
                 // AutoStartOnInit (0) rather than ExplicitStart (-1).
-                var configBuilder = new SdkConfiguration.Builder(apiKey);
-                // DO NOT set ExplicitStart — let the SDK auto-initialize and transition
-                // through its state machine (AskPermissions -> Initialized -> RecordingInProgress)
+                var configBuilder = new SdkConfiguration.Builder(apiKey)
+                    .DelayAutoStartRecording(SdkConfiguration.AutoStartOnInit);
                 _notifFactory = new ForegroundNotificationFactoryImpl();
                 configBuilder.ForegroundNotificationFactory(_notifFactory);
                 var config = configBuilder.Build();
 
                 Log($"Config built: ApiKey length={config.ApiKey?.Length ?? 0}, DelayAutoStart={config.DelayAutoStartRecording}");
 
-                await RunOnMainThreadAsync(() => { _sdk = TruemetricsSdk.Init(ctx, config); }).ConfigureAwait(false);
+                await RunSdkAsync(() => { _sdk = TruemetricsSdk.Init(ctx, config); }, timeoutMs: 5000).ConfigureAwait(false);
                 Log("SDK initialized via TruemetricsSdk.Init().");
 
-                var instance = await RunOnMainThreadAsync(() => TruemetricsSdk.Instance).ConfigureAwait(false);
+                var instance = TruemetricsSdk.Instance;
                 Log("SDK instance resolved: " + (instance != null));
 
                 // Wait for initialization to complete — the SDK needs time to fetch config from
@@ -270,20 +183,14 @@ namespace TrueMetricsSample.Droid
                 // StatusListener.onStateChange(State.INITIALIZED).
                 Log("Waiting for SDK to fully initialize (up to 15s)...");
 
-                var initialized = await WaitForAsync(async () =>
+                try
                 {
-                    var devId = await RunOnMainThreadAsync(() => _sdk?.DeviceId).ConfigureAwait(false);
-                    return !string.IsNullOrWhiteSpace(devId);
-                }, timeoutMs: 15000, pollMs: 500).ConfigureAwait(false);
-
-                if (initialized)
-                {
-                    var devId = await RunOnMainThreadAsync(() => _sdk.DeviceId).ConfigureAwait(false);
-                    Log("SDK fully initialized. DeviceId: " + devId);
+                    var devId = await RunSdkAsync(() => _sdk?.DeviceId, timeoutMs: 2000).ConfigureAwait(false);
+                    Log("DeviceId(after init, 2s timeout): " + (devId ?? string.Empty));
                 }
-                else
+                catch (TimeoutException)
                 {
-                    Log("WARNING: SDK did not fully initialize within timeout. DeviceId may still become available.");
+                    Log("WARNING: DeviceId read timed out after init (2s)." );
                 }
 
                 Log("State(after init): " + await SnapshotStateAsync().ConfigureAwait(false));
@@ -303,7 +210,7 @@ namespace TrueMetricsSample.Droid
 
             try
             {
-                var hasSdk = await RunOnMainThreadAsync(() => _sdk != null).ConfigureAwait(false);
+                var hasSdk = _sdk != null;
                 Log("SdkInitialized: " + hasSdk);
 
                 if (!hasSdk)
@@ -334,7 +241,16 @@ namespace TrueMetricsSample.Droid
 
                 Log("State(before SensorStatistics): " + await SnapshotStateAsync().ConfigureAwait(false));
 
-                var stats = await RunOnMainThreadAsync(() => _sdk.SensorStatistics).ConfigureAwait(false);
+                global::System.Collections.Generic.IList<global::IO.Truemetrics.Truemetricssdk.Engine.Stats.SensorStatistics> stats;
+                try
+                {
+                    stats = await RunSdkAsync(() => _sdk.SensorStatistics, timeoutMs: 2000).ConfigureAwait(false);
+                }
+                catch (TimeoutException)
+                {
+                    Log("WARNING: SensorStatistics read timed out (2s).");
+                    return sb.ToString();
+                }
                 if (stats == null)
                 {
                     Log("SensorStatistics: null");
@@ -388,17 +304,18 @@ namespace TrueMetricsSample.Droid
                     Log("PostNotificationsGranted: " + (postNotif == Android.Content.PM.Permission.Granted));
                 }
 
-                Log("State(before DeviceId wait): " + await SnapshotStateAsync().ConfigureAwait(false));
-
-                var gotDeviceId = await WaitForAsync(async () =>
+                // DeviceId getter may block (e.g., binder/IO) and can cause ANR if called on the UI thread.
+                // Retrieve it on a background thread with a short timeout.
+                var readTask = Task.Run(() => _sdk.DeviceId);
+                var completed = await Task.WhenAny(readTask, Task.Delay(2000)).ConfigureAwait(false);
+                if (completed != readTask)
                 {
-                    var id = await RunOnMainThreadAsync(() => _sdk.DeviceId).ConfigureAwait(false);
-                    return !string.IsNullOrWhiteSpace(id);
-                }, timeoutMs: 15000, pollMs: 250).ConfigureAwait(false);
+                    Log("WARNING: DeviceId read timed out (2s). Skipping to avoid ANR.");
+                    return sb.ToString();
+                }
 
-                var deviceId = await RunOnMainThreadAsync(() => _sdk.DeviceId).ConfigureAwait(false);
-                Log("DeviceId(available=" + gotDeviceId + "): " + (deviceId ?? string.Empty));
-                Log("State(after DeviceId wait): " + await SnapshotStateAsync().ConfigureAwait(false));
+                var deviceId = await readTask.ConfigureAwait(false);
+                Log("DeviceId: " + (deviceId ?? string.Empty));
             }
             catch (Exception ex)
             {
@@ -421,9 +338,9 @@ namespace TrueMetricsSample.Droid
                     return sb.ToString();
                 }
 
-                await RunOnMainThreadAsync(() => { _sdk.AllSensorsEnabled = true; }).ConfigureAwait(false);
+                await RunSdkAsync(() => { _sdk.AllSensorsEnabled = true; }, timeoutMs: 2000).ConfigureAwait(false);
                 Log("AllSensorsEnabled property set to true.");
-                Log("AllSensorsEnabled: " + await RunOnMainThreadAsync(() => _sdk.AllSensorsEnabled).ConfigureAwait(false));
+                Log("AllSensorsEnabled: " + await RunSdkAsync(() => _sdk.AllSensorsEnabled, timeoutMs: 2000).ConfigureAwait(false));
                 Log("State(after EnableSensors): " + await SnapshotStateAsync().ConfigureAwait(false));
             }
             catch (Exception ex)
@@ -447,9 +364,9 @@ namespace TrueMetricsSample.Droid
                     return sb.ToString();
                 }
 
-                await RunOnMainThreadAsync(() => { _sdk.AllSensorsEnabled = false; }).ConfigureAwait(false);
+                await RunSdkAsync(() => { _sdk.AllSensorsEnabled = false; }, timeoutMs: 2000).ConfigureAwait(false);
                 Log("AllSensorsEnabled property set to false.");
-                Log("AllSensorsEnabled: " + await RunOnMainThreadAsync(() => _sdk.AllSensorsEnabled).ConfigureAwait(false));
+                Log("AllSensorsEnabled: " + await RunSdkAsync(() => _sdk.AllSensorsEnabled, timeoutMs: 2000).ConfigureAwait(false));
                 Log("State(after DisableSensors): " + await SnapshotStateAsync().ConfigureAwait(false));
             }
             catch (Exception ex)
@@ -475,20 +392,8 @@ namespace TrueMetricsSample.Droid
 
                 Log("State(before StartRecording): " + await SnapshotStateAsync().ConfigureAwait(false));
 
-                // Wait for SDK to be ready (DeviceId available = initialized)
-                var ready = await WaitForAsync(async () =>
-                {
-                    var devId = await RunOnMainThreadAsync(() => _sdk?.DeviceId).ConfigureAwait(false);
-                    return !string.IsNullOrWhiteSpace(devId);
-                }, timeoutMs: 10000, pollMs: 500).ConfigureAwait(false);
-
-                if (!ready)
-                {
-                    Log("WARNING: SDK may not be fully initialized yet. Attempting StartRecording anyway.");
-                }
-
-                // Check if already recording (SDK auto-start may have kicked in)
-                var alreadyRecording = await RunOnMainThreadAsync(() => _sdk.IsRecordingInProgress).ConfigureAwait(false);
+                // Check if already recording
+                var alreadyRecording = await RunSdkAsync(() => _sdk.IsRecordingInProgress, timeoutMs: 2000).ConfigureAwait(false);
                 if (alreadyRecording)
                 {
                     Log("Recording is already in progress (auto-started by SDK).");
@@ -496,32 +401,28 @@ namespace TrueMetricsSample.Droid
                     return sb.ToString();
                 }
 
-                var sensorsEnabled = await RunOnMainThreadAsync(() => _sdk.AllSensorsEnabled).ConfigureAwait(false);
+                var sensorsEnabled = await RunSdkAsync(() => _sdk.AllSensorsEnabled, timeoutMs: 2000).ConfigureAwait(false);
                 if (!sensorsEnabled)
                 {
                     Log("AllSensorsEnabled was false; set to true.");
-                    await RunOnMainThreadAsync(() => { _sdk.AllSensorsEnabled = true; }).ConfigureAwait(false);
-
-                    var enabledConfirmed = await WaitForAsync(async () =>
-                    {
-                        var enabledNow = await RunOnMainThreadAsync(() => _sdk.AllSensorsEnabled).ConfigureAwait(false);
-                        return enabledNow;
-                    }, timeoutMs: 5000, pollMs: 250).ConfigureAwait(false);
-
-                    Log("AllSensorsEnabled(confirmed=" + enabledConfirmed + "): " + await RunOnMainThreadAsync(() => _sdk.AllSensorsEnabled).ConfigureAwait(false));
+                    await RunSdkAsync(() => { _sdk.AllSensorsEnabled = true; }, timeoutMs: 2000).ConfigureAwait(false);
+                    Log("AllSensorsEnabled(now): " + await RunSdkAsync(() => _sdk.AllSensorsEnabled, timeoutMs: 2000).ConfigureAwait(false));
                 }
 
-                await RunOnMainThreadAsync(() => _sdk.StartRecording()).ConfigureAwait(false);
+                await RunSdkAsync(() => _sdk.StartRecording(), timeoutMs: 2000).ConfigureAwait(false);
                 Log("StartRecording invoked.");
 
-                var started = await WaitForAsync(async () =>
+                bool started;
+                try
                 {
-                    var inProgress = await RunOnMainThreadAsync(() => _sdk.IsRecordingInProgress).ConfigureAwait(false);
-                    var startTime = await RunOnMainThreadAsync(() => _sdk.RecordingStartTime).ConfigureAwait(false);
-                    return inProgress || startTime > 0;
-                }, timeoutMs: 10000, pollMs: 250).ConfigureAwait(false);
+                    started = await RunSdkAsync(() => _sdk.IsRecordingInProgress || _sdk.RecordingStartTime > 0, timeoutMs: 2000).ConfigureAwait(false);
+                }
+                catch (TimeoutException)
+                {
+                    started = false;
+                }
 
-                Log("RecordingStarted(confirmed=" + started + ")");
+                Log("RecordingStarted(observed=" + started + ")");
                 Log("State(after StartRecording wait): " + await SnapshotStateAsync().ConfigureAwait(false));
             }
             catch (Exception ex)
@@ -547,17 +448,20 @@ namespace TrueMetricsSample.Droid
 
                 Log("State(before StopRecording): " + await SnapshotStateAsync().ConfigureAwait(false));
 
-                await RunOnMainThreadAsync(() => _sdk.StopRecording()).ConfigureAwait(false);
+                await RunSdkAsync(() => _sdk.StopRecording(), timeoutMs: 2000).ConfigureAwait(false);
                 Log("StopRecording invoked.");
 
-                var stopped = await WaitForAsync(async () =>
+                bool stopped;
+                try
                 {
-                    var stoppedFlag = await RunOnMainThreadAsync(() => _sdk.IsRecordingStopped).ConfigureAwait(false);
-                    var inProgress = await RunOnMainThreadAsync(() => _sdk.IsRecordingInProgress).ConfigureAwait(false);
-                    return stoppedFlag || !inProgress;
-                }, timeoutMs: 10000, pollMs: 250).ConfigureAwait(false);
+                    stopped = await RunSdkAsync(() => _sdk.IsRecordingStopped || !_sdk.IsRecordingInProgress, timeoutMs: 2000).ConfigureAwait(false);
+                }
+                catch (TimeoutException)
+                {
+                    stopped = false;
+                }
 
-                Log("RecordingStopped(confirmed=" + stopped + ")");
+                Log("RecordingStopped(observed=" + stopped + ")");
                 Log("State(after StopRecording wait): " + await SnapshotStateAsync().ConfigureAwait(false));
             }
             catch (Exception ex)
