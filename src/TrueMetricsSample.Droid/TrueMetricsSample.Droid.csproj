@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E6D2CCB4-9B43-4AF7-BF1C-91A1BC9C05C2}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <BaseOutputPath>bin\</BaseOutputPath>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <RootNamespace>TrueMetricsSample.Droid</RootNamespace>
+    <AssemblyName>TrueMetricsSample.Droid</AssemblyName>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidUseAndroidX>true</AndroidUseAndroidX>
+    <AndroidEnableJetifier>true</AndroidEnableJetifier>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <TargetFrameworkVersion>v13.0</TargetFrameworkVersion>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <LangVersion>latest</LangVersion>
+    <AndroidLinkSkip></AndroidLinkSkip>
+    <AndroidStoreUncompressedFileExtensions></AndroidStoreUncompressedFileExtensions>
+    <JavaOptions></JavaOptions>
+    <UseVendorMavenDeps>true</UseVendorMavenDeps>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DocumentationFile></DocumentationFile>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <IntermediateOutputPath></IntermediateOutputPath>
+    <ConsolePause>true</ConsolePause>
+    <ExternalConsole>false</ExternalConsole>
+    <Commandlineparameters></Commandlineparameters>
+    <RunWithWarnings>true</RunWithWarnings>
+    <AndroidManagedSymbols>false</AndroidManagedSymbols>
+    <MandroidExtraArgs></MandroidExtraArgs>
+    <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
+    <BundleAssemblies></BundleAssemblies>
+    <MandroidI18n></MandroidI18n>
+    <JavaMaximumHeapSize></JavaMaximumHeapSize>
+    <AndroidKeyStore></AndroidKeyStore>
+    <AndroidSigningKeyStore></AndroidSigningKeyStore>
+    <AndroidSigningStorePass></AndroidSigningStorePass>
+    <AndroidSigningKeyAlias></AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass></AndroidSigningKeyPass>
+    <AndroidPackageFormat></AndroidPackageFormat>
+    <AotAssemblies></AotAssemblies>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableSGenConcurrent>false</AndroidEnableSGenConcurrent>
+    <AndroidUseAapt2></AndroidUseAapt2>
+    <AndroidEnableMultiDex></AndroidEnableMultiDex>
+    <AndroidFastDeploymentType></AndroidFastDeploymentType>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <AndroidDexTool></AndroidDexTool>
+    <NoWarn></NoWarn>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <LangVersion></LangVersion>
+    <NoStdLib>false</NoStdLib>
+    <PlatformTarget>anycpu</PlatformTarget>
+    <WarningsNotAsErrors></WarningsNotAsErrors>
+    <Nullable></Nullable>
+    <EmbedAssembliesIntoApk></EmbedAssembliesIntoApk>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType></DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DocumentationFile></DocumentationFile>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <IntermediateOutputPath></IntermediateOutputPath>
+    <ConsolePause>true</ConsolePause>
+    <ExternalConsole>false</ExternalConsole>
+    <Commandlineparameters></Commandlineparameters>
+    <RunWithWarnings>true</RunWithWarnings>
+    <AndroidManagedSymbols>false</AndroidManagedSymbols>
+    <MandroidExtraArgs></MandroidExtraArgs>
+    <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
+    <BundleAssemblies></BundleAssemblies>
+    <MandroidI18n></MandroidI18n>
+    <JavaMaximumHeapSize></JavaMaximumHeapSize>
+    <AndroidKeyStore></AndroidKeyStore>
+    <AndroidSigningKeyStore></AndroidSigningKeyStore>
+    <AndroidSigningStorePass></AndroidSigningStorePass>
+    <AndroidSigningKeyAlias></AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass></AndroidSigningKeyPass>
+    <AndroidPackageFormat></AndroidPackageFormat>
+    <AotAssemblies></AotAssemblies>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableSGenConcurrent>false</AndroidEnableSGenConcurrent>
+    <AndroidUseAapt2></AndroidUseAapt2>
+    <AndroidEnableMultiDex></AndroidEnableMultiDex>
+    <AndroidFastDeploymentType></AndroidFastDeploymentType>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <AndroidDexTool></AndroidDexTool>
+    <NoWarn></NoWarn>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <LangVersion></LangVersion>
+    <NoStdLib>false</NoStdLib>
+    <PlatformTarget>anycpu</PlatformTarget>
+    <WarningsNotAsErrors></WarningsNotAsErrors>
+    <Nullable></Nullable>
+    <EmbedAssembliesIntoApk></EmbedAssembliesIntoApk>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2662" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.8.1" />
+    <PackageReference Include="Xamarin.AndroidX.Core" Version="1.9.0.3" />
+    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.6.1.7" />
+    <PackageReference Include="Xamarin.AndroidX.AppCompat.AppCompatResources" Version="1.6.1.7" />
+    <PackageReference Include="Xamarin.AndroidX.RecyclerView" Version="1.2.1.5" />
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.4.0.2" />
+    <!-- Upgraded to 1.7.3.2 which depends on Xamarin.Kotlin.StdLib >= 1.9.0.x -->
+    <PackageReference Include="Xamarin.KotlinX.Coroutines.Core.Jvm" Version="1.7.3.2" Condition="'$(UseVendorMavenDeps)' != 'true'" />
+    <PackageReference Include="Xamarin.KotlinX.Coroutines.Android" Version="1.7.3.2" Condition="'$(UseVendorMavenDeps)' != 'true'" />
+    <!-- Explicit Kotlin stdlib 1.9.x — supplies SpillingKt class needed by AAR compiled with Kotlin 2.x -->
+    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.9.0.5" Condition="'$(UseVendorMavenDeps)' != 'true'" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib.Jdk8" Version="1.9.0.5" Condition="'$(UseVendorMavenDeps)' != 'true'" />
+    <PackageReference Include="Xamarin.AndroidX.Work.Runtime" Version="2.7.1.1" Condition="'$(UseVendorMavenDeps)' != 'true'" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(UseVendorMavenDeps)' == 'true'">
+    <!-- Vendor Maven-aligned AndroidX/SQLite/Room/DataStore/SQLCipher dependencies for TrueMetrics 1.4.3 -->
+    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\lifecycle-process-2.2.0.aar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\lifecycle-process-2.2.0.aar')" />
+    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\startup-runtime-1.2.0.aar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\startup-runtime-1.2.0.aar')" />
+    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\work-runtime-2.9.0.aar" />
+    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\work-runtime-ktx-2.9.0.aar" />
+    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\room-runtime-2.4.3.aar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\room-runtime-2.4.3.aar')" />
+    <AndroidLibrary Include="$(NuGetPackageRoot)xamarin.androidx.room.runtime/2.3.0.5/aar/androidx.room.room-runtime.aar" Condition="!Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\room-runtime-2.4.3.aar') And Exists('$(NuGetPackageRoot)xamarin.androidx.room.runtime/2.3.0.5/aar/androidx.room.room-runtime.aar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\room-common-2.4.3.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\room-common-2.4.3.jar')" />
+    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\room-ktx-2.7.2.aar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\room-ktx-2.7.2.aar')" />
+    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\sqlite-ktx-2.5.2.aar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\sqlite-ktx-2.5.2.aar')" />
+    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\sqlite-framework-android-2.5.2.aar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\sqlite-framework-android-2.5.2.aar')" />
+    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\sqlite-framework-2.5.2.aar" Condition="!Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\sqlite-framework-android-2.5.2.aar') And Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\sqlite-framework-2.5.2.aar')" />
+    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\sqlite-android-2.5.2.aar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\sqlite-android-2.5.2.aar')" />
+    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\sqlite-2.5.2.aar" Condition="!Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\sqlite-android-2.5.2.aar') And Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\sqlite-2.5.2.aar')" />
+    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\datastore-core-1.1.7.aar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\datastore-core-1.1.7.aar')" />
+    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\datastore-preferences-1.1.7.aar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\datastore-preferences-1.1.7.aar')" />
+    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\sqlcipher-android-4.9.0.aar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\sqlcipher-android-4.9.0.aar')" />
+
+    <!-- Vendor Maven-aligned Kotlin + Coroutines (Kotlin stdlib required by SDK is 2.2.20) -->
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\kotlin-stdlib-2.2.20.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\kotlin-stdlib-2.2.20.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\kotlin-stdlib-jdk8-2.2.20.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\kotlin-stdlib-jdk8-2.2.20.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\kotlin-stdlib-jdk7-2.2.20.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\kotlin-stdlib-jdk7-2.2.20.jar')" />
+
+    <!-- Vendor Maven-aligned Koin/Ktor/Serialization -->
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\koin-core-jvm-4.1.1.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\koin-core-jvm-4.1.1.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\ktor-client-android-jvm-3.3.0.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\ktor-client-android-jvm-3.3.0.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\ktor-client-core-jvm-3.3.0.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\ktor-client-core-jvm-3.3.0.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\ktor-client-encoding-jvm-3.3.0.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\ktor-client-encoding-jvm-3.3.0.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\ktor-client-content-negotiation-jvm-3.3.0.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\ktor-client-content-negotiation-jvm-3.3.0.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\ktor-serialization-kotlinx-jvm-3.3.0.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\ktor-serialization-kotlinx-jvm-3.3.0.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\ktor-serialization-kotlinx-json-jvm-3.3.0.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\ktor-serialization-kotlinx-json-jvm-3.3.0.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\ktor-client-logging-jvm-3.3.0.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\ktor-client-logging-jvm-3.3.0.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\ktor-utils-jvm-3.3.0.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\ktor-utils-jvm-3.3.0.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\ktor-io-jvm-3.3.0.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\ktor-io-jvm-3.3.0.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\ktor-http-jvm-3.3.0.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\ktor-http-jvm-3.3.0.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\ktor-events-jvm-3.3.0.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\ktor-events-jvm-3.3.0.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\ktor-serialization-jvm-3.3.0.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\ktor-serialization-jvm-3.3.0.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\slf4j-api-1.7.36.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\slf4j-api-1.7.36.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\kotlinx-serialization-json-jvm-1.9.0.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\kotlinx-serialization-json-jvm-1.9.0.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\kotlinx-serialization-core-jvm-1.9.0.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\kotlinx-serialization-core-jvm-1.9.0.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\kotlinx-coroutines-core-jvm-1.10.2.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\kotlinx-coroutines-core-jvm-1.10.2.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\kotlinx-coroutines-android-1.10.2.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\kotlinx-coroutines-android-1.10.2.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\stately-concurrency-jvm-2.1.0.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\stately-concurrency-jvm-2.1.0.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\stately-concurrent-collections-jvm-2.1.0.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\stately-concurrent-collections-jvm-2.1.0.jar')" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AndroidLibrary Include="$(NuGetPackageRoot)xamarin.androidx.core/1.9.0.3/aar/androidx.core.core.aar" />
+
+    <AndroidLibrary Include="$(NuGetPackageRoot)xamarin.androidx.appcompat/1.6.1.7/aar/androidx.appcompat.appcompat.aar" />
+
+    <AndroidLibrary Include="$(NuGetPackageRoot)xamarin.androidx.appcompat.appcompatresources/1.6.1.7/aar/androidx.appcompat.appcompat-resources.aar" />
+
+    <AndroidLibrary Include="$(NuGetPackageRoot)xamarin.androidx.recyclerview/1.2.1.5/aar/androidx.recyclerview.recyclerview.aar" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(UseVendorMavenDeps)' != 'true'">
+    <AndroidLibrary Include="$(NuGetPackageRoot)xamarin.androidx.work.runtime/2.7.1.1/aar/androidx.work.work-runtime.aar" Condition="Exists('$(NuGetPackageRoot)xamarin.androidx.work.runtime/2.7.1.1/aar/androidx.work.work-runtime.aar')" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AndroidLibrary Include="/Users/dkumar/Library/Caches/XamarinBuildDownload/playserviceslocation-21.3.0/playserviceslocation-21.3.0.aar" Condition="Exists('/Users/dkumar/Library/Caches/XamarinBuildDownload/playserviceslocation-21.3.0/playserviceslocation-21.3.0.aar')" />
+    <AndroidLibrary Include="/Users/dkumar/Library/Caches/XamarinBuildDownload/playservicesbase-18.9.0/playservicesbase-18.9.0.aar" Condition="Exists('/Users/dkumar/Library/Caches/XamarinBuildDownload/playservicesbase-18.9.0/playservicesbase-18.9.0.aar')" />
+    <AndroidLibrary Include="/Users/dkumar/Library/Caches/XamarinBuildDownload/playservicesbasement-18.9.0/playservicesbasement-18.9.0.aar" Condition="Exists('/Users/dkumar/Library/Caches/XamarinBuildDownload/playservicesbasement-18.9.0/playservicesbasement-18.9.0.aar')" />
+    <AndroidLibrary Include="/Users/dkumar/Library/Caches/XamarinBuildDownload/playservicestasks-18.4.0/playservicestasks-18.4.0.aar" Condition="Exists('/Users/dkumar/Library/Caches/XamarinBuildDownload/playservicestasks-18.4.0/playservicestasks-18.4.0.aar')" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AndroidLibrary Remove="/Users/dkumar/Library/Caches/XamarinBuildDownload/playservicesbase-17.6.0/playservicesbase-17.6.0.aar" />
+    <AndroidLibrary Remove="/Users/dkumar/Library/Caches/XamarinBuildDownload/playservicesbasement-17.6.0/playservicesbasement-17.6.0.aar" />
+    <AndroidAarLibrary Remove="/Users/dkumar/Library/Caches/XamarinBuildDownload/playservicesbase-17.6.0/playservicesbase-17.6.0.aar" />
+    <AndroidAarLibrary Remove="/Users/dkumar/Library/Caches/XamarinBuildDownload/playservicesbasement-17.6.0/playservicesbasement-17.6.0.aar" />
+    <XamarinBuildDownloadAndroidAarLibrary Remove="/Users/dkumar/Library/Caches/XamarinBuildDownload/playservicesbase-17.6.0/playservicesbase-17.6.0.aar" />
+    <XamarinBuildDownloadAndroidAarLibrary Remove="/Users/dkumar/Library/Caches/XamarinBuildDownload/playservicesbasement-17.6.0/playservicesbasement-17.6.0.aar" />
+  </ItemGroup>
+
+  <Target Name="RemoveOldGooglePlayServicesAars" BeforeTargets="ResolveLibraryProjectImports">
+    <ItemGroup>
+      <AndroidLibrary Remove="@(AndroidLibrary)" Condition="$([System.String]::Copy('%(AndroidLibrary.Identity)').Contains('playservicesbase-17.6.0'))&#xA;                             Or $([System.String]::Copy('%(AndroidLibrary.Identity)').Contains('playservicesbasement-17.6.0'))&#xA;                             Or $([System.String]::Copy('%(AndroidLibrary.Identity)').Contains('playservicestasks-17.2.1'))&#xA;                             Or $([System.String]::Copy('%(AndroidLibrary.Identity)').Contains('playservicesplacesplacereport-17.0.0'))&#xA;                             Or $([System.String]::Copy('%(AndroidLibrary.Identity)').Contains('playserviceslocation-18.0.0'))" />
+
+      <AndroidAarLibrary Remove="@(AndroidAarLibrary)" Condition="$([System.String]::Copy('%(AndroidAarLibrary.Identity)').Contains('playservicesbase-17.6.0'))&#xA;                                Or $([System.String]::Copy('%(AndroidAarLibrary.Identity)').Contains('playservicesbasement-17.6.0'))&#xA;                                Or $([System.String]::Copy('%(AndroidAarLibrary.Identity)').Contains('playservicestasks-17.2.1'))&#xA;                                Or $([System.String]::Copy('%(AndroidAarLibrary.Identity)').Contains('playservicesplacesplacereport-17.0.0'))&#xA;                                Or $([System.String]::Copy('%(AndroidAarLibrary.Identity)').Contains('playserviceslocation-18.0.0'))" />
+
+      <XamarinBuildDownloadAndroidAarLibrary Remove="@(XamarinBuildDownloadAndroidAarLibrary)" Condition="$([System.String]::Copy('%(XamarinBuildDownloadAndroidAarLibrary.Identity)').Contains('playservicesbase-17.6.0'))&#xA;                                                   Or $([System.String]::Copy('%(XamarinBuildDownloadAndroidAarLibrary.Identity)').Contains('playservicesbasement-17.6.0'))&#xA;                                                   Or $([System.String]::Copy('%(XamarinBuildDownloadAndroidAarLibrary.Identity)').Contains('playservicestasks-17.2.1'))&#xA;                                                   Or $([System.String]::Copy('%(XamarinBuildDownloadAndroidAarLibrary.Identity)').Contains('playservicesplacesplacereport-17.0.0'))&#xA;                                                   Or $([System.String]::Copy('%(XamarinBuildDownloadAndroidAarLibrary.Identity)').Contains('playserviceslocation-18.0.0'))" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="RemoveNuGetKotlinStdlibInVendorMode" BeforeTargets="_ResolveLibraryProjectImports" Condition="'$(UseVendorMavenDeps)' == 'true'">
+    <ItemGroup>
+      <AndroidJavaLibrary Remove="@(AndroidJavaLibrary)" Condition="$([System.String]::Copy('%(AndroidJavaLibrary.Identity)').Contains('org.jetbrains.kotlin.kotlin-stdlib-'))" />
+      <AndroidJavaLibrary Remove="@(AndroidJavaLibrary)" Condition="$([System.String]::Copy('%(AndroidJavaLibrary.Identity)').Contains('xamarin.kotlin.stdlib'))" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="RemoveNuGetCoroutinesInVendorMode" BeforeTargets="_ResolveLibraryProjectImports" Condition="'$(UseVendorMavenDeps)' == 'true'">
+    <ItemGroup>
+      <AndroidJavaLibrary Remove="@(AndroidJavaLibrary)" Condition="($([System.String]::Copy('%(AndroidJavaLibrary.Identity)').Contains('/.nuget/packages/')) Or $([System.String]::Copy('%(AndroidJavaLibrary.Identity)').Contains('\\.nuget\\packages\\')) Or $([System.String]::Copy('%(AndroidJavaLibrary.Identity)').Contains('xamarin.kotlinx.coroutines'))) And $([System.String]::Copy('%(AndroidJavaLibrary.Identity)').Contains('kotlinx-coroutines'))" />
+    </ItemGroup>
+  </Target>
+
+  <ItemGroup Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\timber-5.0.1.aar')">
+    <AndroidLibrary Include="..\\TrueMetricsSdk.Binding\\Jars\\timber-5.0.1.aar" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(UseVendorMavenDeps)' != 'true' And Exists('..\\TrueMetricsSdk.Binding\\Jars\\koin-core-jvm-3.4.3.jar')">
+    <AndroidJavaLibrary Include="..\\TrueMetricsSdk.Binding\\Jars\\koin-core-jvm-3.4.3.jar" />
+  </ItemGroup>
+
+  <!-- Minimal stub for SpillingKt to prevent duplicate class errors -->
+  <ItemGroup Condition="'$(UseVendorMavenDeps)' != 'true' And Exists('..\\TrueMetricsSdk.Binding\\Jars\\spilling-stub.jar')">
+    <AndroidJavaLibrary Include="..\\TrueMetricsSdk.Binding\\Jars\\spilling-stub.jar" />
+  </ItemGroup>
+
+  <!-- kotlinx-coroutines is provided by NuGet package Xamarin.KotlinX.Coroutines.* -->
+
+  <!-- Ktor 3.0.3 — matches what truemetricssdk-1.4.3.aar was compiled against (Ktor 2.x API is INCOMPATIBLE) -->
+  <ItemGroup Condition="'$(UseVendorMavenDeps)' != 'true'">
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\ktor-client-core-jvm-3.0.3.jar" Condition="Exists('..\TrueMetricsSdk.Binding\Jars\ktor-client-core-jvm-3.0.3.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\ktor-client-android-jvm-3.0.3.jar" Condition="Exists('..\TrueMetricsSdk.Binding\Jars\ktor-client-android-jvm-3.0.3.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\ktor-client-encoding-jvm-3.0.3.jar" Condition="Exists('..\TrueMetricsSdk.Binding\Jars\ktor-client-encoding-jvm-3.0.3.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\ktor-client-content-negotiation-jvm-3.0.3.jar" Condition="Exists('..\TrueMetricsSdk.Binding\Jars\ktor-client-content-negotiation-jvm-3.0.3.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\ktor-serialization-kotlinx-json-jvm-3.0.3.jar" Condition="Exists('..\TrueMetricsSdk.Binding\Jars\ktor-serialization-kotlinx-json-jvm-3.0.3.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\ktor-serialization-kotlinx-jvm-3.0.3.jar" Condition="Exists('..\TrueMetricsSdk.Binding\Jars\ktor-serialization-kotlinx-jvm-3.0.3.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\ktor-http-jvm-3.0.3.jar" Condition="Exists('..\TrueMetricsSdk.Binding\Jars\ktor-http-jvm-3.0.3.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\ktor-io-jvm-3.0.3.jar" Condition="Exists('..\TrueMetricsSdk.Binding\Jars\ktor-io-jvm-3.0.3.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\ktor-utils-jvm-3.0.3.jar" Condition="Exists('..\TrueMetricsSdk.Binding\Jars\ktor-utils-jvm-3.0.3.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\ktor-events-jvm-3.0.3.jar" Condition="Exists('..\TrueMetricsSdk.Binding\Jars\ktor-events-jvm-3.0.3.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\ktor-serialization-jvm-3.0.3.jar" Condition="Exists('..\TrueMetricsSdk.Binding\Jars\ktor-serialization-jvm-3.0.3.jar')" />
+    <!-- slf4j-api 1.7.36 is used to avoid D8 NPE with 2.x MRJARs -->
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\slf4j-api-1.7.36.jar" Condition="Exists('..\TrueMetricsSdk.Binding\Jars\slf4j-api-1.7.36.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\kotlinx-serialization-core-jvm-1.6.3.jar" Condition="Exists('..\TrueMetricsSdk.Binding\Jars\kotlinx-serialization-core-jvm-1.6.3.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\kotlinx-serialization-json-jvm-1.6.3.jar" Condition="Exists('..\TrueMetricsSdk.Binding\Jars\kotlinx-serialization-json-jvm-1.6.3.jar')" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TrueMetricsSample\TrueMetricsSample.csproj">
+      <Project>{3D3F9B07-0B07-4BE2-8CA7-3B5F83D3F981}</Project>
+      <Name>TrueMetricsSample</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TrueMetricsSdk.Binding\TrueMetricsSdk.Binding.csproj">
+      <Project>{A1E606DA-7897-4B3E-B7B2-6F7DAF8E9B9B}</Project>
+      <Name>TrueMetricsSdk.Binding</Name>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="TrueMetricsExerciseService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Resource.designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Tabbar.axml" />
+    <AndroidResource Include="Resources\layout\Toolbar.axml" />
+    <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\values\integers.xml" />
+    <AndroidResource Include="Resources\drawable\ic_launcher_foreground.xml" />
+    <AndroidResource Include="Resources\mipmap-anydpi-v26\ic_launcher.xml" />
+    <AndroidResource Include="Resources\mipmap-anydpi-v26\ic_launcher_round.xml" />
+    <AndroidResource Include="Resources\xml\provider_paths.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Properties\AndroidManifest.xml" />
+  </ItemGroup>
+
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+</Project>

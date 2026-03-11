@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TrueMetricsSample.MainPage"
+             Title="TrueMetrics Sample">
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Color x:Key="PageBg">#0B1020</Color>
+      <Color x:Key="CardBg">#131A2E</Color>
+      <Color x:Key="CardBorder">#1D2642</Color>
+      <Color x:Key="TextPrimary">#FFFFFF</Color>
+      <Color x:Key="TextSecondary">#B8C0D9</Color>
+      <Color x:Key="Accent">#4F8CFF</Color>
+
+      <Style TargetType="ContentPage">
+        <Setter Property="BackgroundColor" Value="{StaticResource PageBg}" />
+      </Style>
+
+      <Style TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+      </Style>
+
+      <Style TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource CardBorder}" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Padding" Value="14,10" />
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <ScrollView>
+    <StackLayout Padding="16" Spacing="14">
+      <Frame BackgroundColor="{StaticResource CardBg}" BorderColor="{StaticResource CardBorder}" CornerRadius="16" Padding="14" HasShadow="False">
+        <StackLayout Spacing="10">
+          <Label Text="Quick actions" FontAttributes="Bold" FontSize="16" />
+          <Grid ColumnSpacing="10" RowSpacing="10">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="0" Grid.Column="0" Text="Init" Command="{Binding InitCommand}" IsEnabled="{Binding IsNotBusy}" BackgroundColor="{StaticResource Accent}" />
+            <Button Grid.Row="0" Grid.Column="1" Text="Get Device Id" Command="{Binding GetDeviceIdCommand}" IsEnabled="{Binding IsNotBusy}" />
+
+            <Button Grid.Row="1" Grid.Column="0" Text="Enable Sensors" Command="{Binding EnableSensorsCommand}" IsEnabled="{Binding IsNotBusy}" />
+            <Button Grid.Row="1" Grid.Column="1" Text="Disable Sensors" Command="{Binding DisableSensorsCommand}" IsEnabled="{Binding IsNotBusy}" />
+
+            <Button Grid.Row="2" Grid.ColumnSpan="2" Text="Get Sensor Statistics" Command="{Binding GetSensorStatisticsCommand}" IsEnabled="{Binding IsNotBusy}" />
+
+            <Button Grid.Row="3" Grid.Column="0" Text="Start Recording" Command="{Binding StartRecordingCommand}" IsEnabled="{Binding IsNotBusy}" />
+            <Button Grid.Row="3" Grid.Column="1" Text="Stop Recording" Command="{Binding StopRecordingCommand}" IsEnabled="{Binding IsNotBusy}" />
+
+            <Button Grid.Row="4" Grid.Column="0" Text="Metadata Demo" Command="{Binding MetadataDemoCommand}" IsEnabled="{Binding IsNotBusy}" />
+            <Button Grid.Row="4" Grid.Column="1" Text="Deinitialize" Command="{Binding DeinitCommand}" IsEnabled="{Binding IsNotBusy}" />
+
+            <Button Grid.Row="5" Grid.ColumnSpan="2" Text="Run Full Exercise" Command="{Binding RunAllCommand}" IsEnabled="{Binding IsNotBusy}" />
+          </Grid>
+        </StackLayout>
+      </Frame>
+
+      <Frame BackgroundColor="{StaticResource CardBg}" BorderColor="{StaticResource CardBorder}" CornerRadius="16" Padding="14" HasShadow="False">
+        <StackLayout Spacing="10">
+          <Label Text="Live status" FontAttributes="Bold" FontSize="16" />
+          <Frame BackgroundColor="#0A0F1F" BorderColor="{StaticResource CardBorder}" CornerRadius="12" Padding="12" HasShadow="False">
+            <Label Text="{Binding StatusText}"
+                   FontFamily="Courier New"
+                   FontSize="12"
+                   TextColor="{StaticResource TextSecondary}"
+                   LineBreakMode="WordWrap" />
+          </Frame>
+        </StackLayout>
+      </Frame>
+
+      <Frame BackgroundColor="{StaticResource CardBg}" BorderColor="{StaticResource CardBorder}" CornerRadius="16" Padding="14" HasShadow="False">
+        <StackLayout Spacing="10">
+          <Grid ColumnSpacing="10" RowSpacing="0">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <StackLayout Grid.Column="0" Spacing="2">
+              <Label Text="Output" FontAttributes="Bold" FontSize="16" />
+              <Label Text="Tap Copy to share logs" FontSize="12" TextColor="{StaticResource TextSecondary}" />
+            </StackLayout>
+
+            <Button Grid.Column="1" Text="Copy" FontSize="Small" Padding="12,8" Command="{Binding CopyLogCommand}" />
+            <Button Grid.Column="2" Text="Clear" FontSize="Small" Padding="12,8" Command="{Binding ClearLogCommand}" />
+          </Grid>
+
+          <Frame BackgroundColor="#0A0F1F" BorderColor="{StaticResource CardBorder}" CornerRadius="12" Padding="12" HasShadow="False">
+            <Label Text="{Binding LogText}"
+                   FontFamily="Courier New"
+                   FontSize="12"
+                   TextColor="{StaticResource TextSecondary}"
+                   LineBreakMode="WordWrap" />
+          </Frame>
+        </StackLayout>
+      </Frame>
+
+    </StackLayout>
+  </ScrollView>
+</ContentPage>

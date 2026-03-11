@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+  <!-- Remove common Android/Kotlin-generated types that cause duplicate/invalid binding output -->
+  <remove-node path="/api/package[@name='kotlin']/class[@name='Metadata']" />
+
+  <!-- The AAR bundles a shaded internal Sentry implementation (libs/sentry-shaded.jar).
+       Those types are not part of the public TrueMetrics SDK API surface and can break binding compilation
+       due to covariant return types in Java (e.g., JsonObjectWriter returning JsonObjectWriter while
+       implementing ObjectWriter which returns ObjectWriter). Remove them entirely. -->
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.backpressure']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.android']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.android.core']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.android.core.internal.util']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.android.fragment']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.android.navigation']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.cache']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.cache.tape']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.clientreport']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.config']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.exception']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.hints']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.instrumentation.file']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.internal.debugmeta']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.internal.gestures']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.internal.modules']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.internal.viewhierarchy']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.metrics']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.profilemeasurements']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.protocol']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.rrweb']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.transport']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.util']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.util.thread']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.vendor']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.vendor.gson']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.vendor.gson.internal']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.vendor.gson.internal.bind']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.vendor.gson.internal.bind.util']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.vendor.gson.internal.sql']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.vendor.gson.reflect']" />
+  <remove-node path="/api/package[@name='io.truemetrics.internal.sentry.vendor.gson.stream']" />
+
+  <remove-node path="/api/package[@name='io.truemetrics.truemetricssdk.engine.upload.di']" />
+
+  <remove-node path="/api/package[@name='io.truemetrics.truemetricssdk.engine.common']/class[@name='KoinKt']" />
+  <remove-node path="/api/package[@name='io.truemetrics.truemetricssdk.engine.configuration.di']/class[@name='KoinKt']" />
+  <remove-node path="/api/package[@name='io.truemetrics.truemetricssdk.engine.sensor.di']/class[@name='KoinKt']" />
+  <remove-node path="/api/package[@name='io.truemetrics.truemetricssdk.engine.storage.di']/class[@name='KoinKt']" />
+  <remove-node path="/api/package[@name='io.truemetrics.truemetricssdk.engine.storage.db.room']/class[@name='DatabaseModuleKt']" />
+
+  <remove-node path="/api/package/class[@name='BuildConfig']" />
+  <remove-node path="/api/package/class[@name='R']" />
+  <remove-node path="/api/package/class[starts-with(@name,'R$')]" />
+
+  <!-- If the AAR bundles AndroidX/Support resources with R classes in its own package, also remove them -->
+  <remove-node path="/api/package[substring(@name, string-length(@name) - 1) = '.R']/class" />
+
+  <!-- Keep public APIs visible: if any classes are marked 'internal' by metadata, you can force visibility like below:
+  <attr path="/api/package[@name='com.truemetrics.sdk']/class[@name='TrueMetricsSdk']" name="visibility">public</attr>
+  -->
+</metadata>

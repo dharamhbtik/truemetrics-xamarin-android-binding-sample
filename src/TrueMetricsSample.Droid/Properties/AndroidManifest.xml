@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" package="com.postnord.truementricssample" android:versionCode="1" android:versionName="1.0">
+	<uses-sdk android:minSdkVersion="24" android:targetSdkVersion="33" />
+	<queries>
+		<intent>
+			<action android:name="android.intent.action.SEND" />
+			<data android:scheme="*/email" />
+		</intent>
+	</queries>
+	<!-- Common SDK permissions (adjust based on TrueMetrics SDK docs / manifest-merger output) -->
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+	<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+	<uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS" />
+	<application android:label="TrueMetricsSample" android:allowBackup="false" android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round" android:supportsRtl="true" tools:ignore="UnusedAttribute">
+		<provider android:name="androidx.core.content.FileProvider" android:authorities="${applicationId}.provider" android:exported="false" android:grantUriPermissions="true">
+			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/provider_paths" />
+		</provider>
+		<service android:name="io.truemetrics.truemetricssdk.service.TruemetricsManagerService" android:exported="false" android:foregroundServiceType="location|dataSync" android:label="@string/foreground_service_name" tools:node="merge" tools:replace="android:foregroundServiceType" />
+	</application>
+</manifest>

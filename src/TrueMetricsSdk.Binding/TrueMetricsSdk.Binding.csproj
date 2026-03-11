@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A1E606DA-7897-4B3E-B7B2-6F7DAF8E9B9B}</ProjectGuid>
+    <ProjectTypeGuids>{10368E6C-D01B-4462-8E8B-01FC667A7035};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <BaseOutputPath>bin\</BaseOutputPath>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <RootNamespace>TrueMetricsSdk</RootNamespace>
+    <AssemblyName>TrueMetricsSdk.Binding</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkVersion>v13.0</TargetFrameworkVersion>
+    <AndroidClassParser>class-parse</AndroidClassParser>
+    <AndroidCodegenTarget>XamarinAndroid</AndroidCodegenTarget>
+    <AndroidLinkSkip></AndroidLinkSkip>
+    <AndroidStoreUncompressedFileExtensions></AndroidStoreUncompressedFileExtensions>
+    <JavaOptions></JavaOptions>
+    <JavaMaximumHeapSize></JavaMaximumHeapSize>
+    <UseVendorMavenDeps>true</UseVendorMavenDeps>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DocumentationFile></DocumentationFile>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <IntermediateOutputPath></IntermediateOutputPath>
+    <ConsolePause>true</ConsolePause>
+    <ExternalConsole>false</ExternalConsole>
+    <Commandlineparameters></Commandlineparameters>
+    <RunWithWarnings>true</RunWithWarnings>
+    <AndroidManagedSymbols>false</AndroidManagedSymbols>
+    <MandroidExtraArgs></MandroidExtraArgs>
+    <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
+    <BundleAssemblies>false</BundleAssemblies>
+    <MandroidI18n></MandroidI18n>
+    <JavaMaximumHeapSize></JavaMaximumHeapSize>
+    <AndroidKeyStore></AndroidKeyStore>
+    <AndroidSigningKeyStore></AndroidSigningKeyStore>
+    <AndroidSigningStorePass></AndroidSigningStorePass>
+    <AndroidSigningKeyAlias></AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass></AndroidSigningKeyPass>
+    <AotAssemblies>false</AotAssemblies>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableSGenConcurrent>false</AndroidEnableSGenConcurrent>
+    <AndroidUseAapt2></AndroidUseAapt2>
+    <AndroidEnableMultiDex>false</AndroidEnableMultiDex>
+    <AndroidFastDeploymentType>Assemblies</AndroidFastDeploymentType>
+    <AndroidManifest></AndroidManifest>
+    <NoWarn></NoWarn>
+    <AllowUnsafeBlocks></AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <LangVersion></LangVersion>
+    <NoStdLib>false</NoStdLib>
+    <PlatformTarget>anycpu</PlatformTarget>
+    <WarningsNotAsErrors></WarningsNotAsErrors>
+    <Nullable></Nullable>
+    <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>portable</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DocumentationFile></DocumentationFile>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <IntermediateOutputPath></IntermediateOutputPath>
+    <ConsolePause>true</ConsolePause>
+    <ExternalConsole>false</ExternalConsole>
+    <Commandlineparameters></Commandlineparameters>
+    <RunWithWarnings>true</RunWithWarnings>
+    <AndroidManagedSymbols>false</AndroidManagedSymbols>
+    <MandroidExtraArgs></MandroidExtraArgs>
+    <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
+    <BundleAssemblies>false</BundleAssemblies>
+    <MandroidI18n></MandroidI18n>
+    <JavaMaximumHeapSize></JavaMaximumHeapSize>
+    <AndroidKeyStore></AndroidKeyStore>
+    <AndroidSigningKeyStore></AndroidSigningKeyStore>
+    <AndroidSigningStorePass></AndroidSigningStorePass>
+    <AndroidSigningKeyAlias></AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass></AndroidSigningKeyPass>
+    <AotAssemblies>false</AotAssemblies>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableSGenConcurrent>false</AndroidEnableSGenConcurrent>
+    <AndroidUseAapt2></AndroidUseAapt2>
+    <AndroidEnableMultiDex>false</AndroidEnableMultiDex>
+    <AndroidFastDeploymentType>Assemblies</AndroidFastDeploymentType>
+    <AndroidManifest></AndroidManifest>
+    <NoWarn></NoWarn>
+    <AllowUnsafeBlocks></AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <LangVersion></LangVersion>
+    <NoStdLib>false</NoStdLib>
+    <PlatformTarget>anycpu</PlatformTarget>
+    <WarningsNotAsErrors></WarningsNotAsErrors>
+    <Nullable></Nullable>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <LibraryProjectZip Include="Jars\truemetricssdk-1.4.3.aar" />
+    <LibraryProjectZip Include="Jars\timber-5.0.1.aar" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TransformFile Include="Transforms\Metadata.xml" />
+  </ItemGroup>
+
+  <!-- Minimal stub for SpillingKt (used by coroutines compiled with Kotlin 2.x) to prevent duplicate class errors -->
+  <ItemGroup Condition="'$(UseVendorMavenDeps)' != 'true' And Exists('Jars\\spilling-stub.jar')">
+    <AndroidJavaLibrary Include="Jars\spilling-stub.jar" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(UseVendorMavenDeps)' != 'true' And Exists('Jars\\koin-core-jvm-3.4.3.jar')">
+    <AndroidJavaLibrary Include="Jars\koin-core-jvm-3.4.3.jar" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(UseVendorMavenDeps)' == 'true' And Exists('Jars\\vendor\\koin-core-jvm-4.1.1.jar')">
+    <AndroidJavaLibrary Include="Jars\vendor\koin-core-jvm-4.1.1.jar" />
+  </ItemGroup>
+
+  <!-- kotlinx-coroutines is provided by NuGet package Xamarin.KotlinX.Coroutines.* -->
+
+  <!-- Vendor mode: Ktor 3.3.0 / Serialization 1.9.0 (matches published Maven metadata for 1.4.3) -->
+  <ItemGroup Condition="'$(UseVendorMavenDeps)' == 'true'">
+    <AndroidJavaLibrary Include="Jars\vendor\ktor-client-core-jvm-3.3.0.jar" Condition="Exists('Jars\\vendor\\ktor-client-core-jvm-3.3.0.jar')" />
+    <AndroidJavaLibrary Include="Jars\vendor\ktor-client-android-jvm-3.3.0.jar" Condition="Exists('Jars\\vendor\\ktor-client-android-jvm-3.3.0.jar')" />
+    <AndroidJavaLibrary Include="Jars\vendor\ktor-client-encoding-jvm-3.3.0.jar" Condition="Exists('Jars\\vendor\\ktor-client-encoding-jvm-3.3.0.jar')" />
+    <AndroidJavaLibrary Include="Jars\vendor\ktor-client-content-negotiation-jvm-3.3.0.jar" Condition="Exists('Jars\\vendor\\ktor-client-content-negotiation-jvm-3.3.0.jar')" />
+    <AndroidJavaLibrary Include="Jars\vendor\ktor-serialization-kotlinx-json-jvm-3.3.0.jar" Condition="Exists('Jars\\vendor\\ktor-serialization-kotlinx-json-jvm-3.3.0.jar')" />
+    <AndroidJavaLibrary Include="Jars\vendor\ktor-client-logging-jvm-3.3.0.jar" Condition="Exists('Jars\\vendor\\ktor-client-logging-jvm-3.3.0.jar')" />
+    <AndroidJavaLibrary Include="Jars\vendor\ktor-http-jvm-3.3.0.jar" Condition="Exists('Jars\\vendor\\ktor-http-jvm-3.3.0.jar')" />
+    <AndroidJavaLibrary Include="Jars\vendor\ktor-io-jvm-3.3.0.jar" Condition="Exists('Jars\\vendor\\ktor-io-jvm-3.3.0.jar')" />
+    <AndroidJavaLibrary Include="Jars\vendor\ktor-utils-jvm-3.3.0.jar" Condition="Exists('Jars\\vendor\\ktor-utils-jvm-3.3.0.jar')" />
+    <AndroidJavaLibrary Include="Jars\vendor\ktor-events-jvm-3.3.0.jar" Condition="Exists('Jars\\vendor\\ktor-events-jvm-3.3.0.jar')" />
+    <AndroidJavaLibrary Include="Jars\vendor\ktor-serialization-jvm-3.3.0.jar" Condition="Exists('Jars\\vendor\\ktor-serialization-jvm-3.3.0.jar')" />
+    <AndroidJavaLibrary Include="Jars\vendor\kotlinx-serialization-core-jvm-1.9.0.jar" Condition="Exists('Jars\\vendor\\kotlinx-serialization-core-jvm-1.9.0.jar')" />
+    <AndroidJavaLibrary Include="Jars\vendor\kotlinx-serialization-json-jvm-1.9.0.jar" Condition="Exists('Jars\\vendor\\kotlinx-serialization-json-jvm-1.9.0.jar')" />
+    <AndroidJavaLibrary Include="Jars\vendor\kotlinx-coroutines-core-jvm-1.10.2.jar" Condition="Exists('Jars\\vendor\\kotlinx-coroutines-core-jvm-1.10.2.jar')" />
+    <AndroidJavaLibrary Include="Jars\vendor\stately-concurrency-jvm-2.1.0.jar" Condition="Exists('Jars\\vendor\\stately-concurrency-jvm-2.1.0.jar')" />
+    <AndroidJavaLibrary Include="Jars\vendor\stately-concurrent-collections-jvm-2.1.0.jar" Condition="Exists('Jars\\vendor\\stately-concurrent-collections-jvm-2.1.0.jar')" />
+  </ItemGroup>
+
+  <!-- Non-vendor mode: legacy jars used during earlier investigation -->
+  <ItemGroup Condition="'$(UseVendorMavenDeps)' != 'true'">
+    <AndroidJavaLibrary Include="Jars\ktor-client-core-jvm-3.0.3.jar" Condition="Exists('Jars\\ktor-client-core-jvm-3.0.3.jar')" />
+    <AndroidJavaLibrary Include="Jars\ktor-client-android-jvm-3.0.3.jar" Condition="Exists('Jars\\ktor-client-android-jvm-3.0.3.jar')" />
+    <AndroidJavaLibrary Include="Jars\ktor-client-encoding-jvm-3.0.3.jar" Condition="Exists('Jars\\ktor-client-encoding-jvm-3.0.3.jar')" />
+    <AndroidJavaLibrary Include="Jars\ktor-client-content-negotiation-jvm-3.0.3.jar" Condition="Exists('Jars\\ktor-client-content-negotiation-jvm-3.0.3.jar')" />
+    <AndroidJavaLibrary Include="Jars\ktor-serialization-kotlinx-json-jvm-3.0.3.jar" Condition="Exists('Jars\\ktor-serialization-kotlinx-json-jvm-3.0.3.jar')" />
+    <AndroidJavaLibrary Include="Jars\ktor-serialization-kotlinx-jvm-3.0.3.jar" Condition="Exists('Jars\\ktor-serialization-kotlinx-jvm-3.0.3.jar')" />
+    <AndroidJavaLibrary Include="Jars\ktor-http-jvm-3.0.3.jar" Condition="Exists('Jars\\ktor-http-jvm-3.0.3.jar')" />
+    <AndroidJavaLibrary Include="Jars\ktor-io-jvm-3.0.3.jar" Condition="Exists('Jars\\ktor-io-jvm-3.0.3.jar')" />
+    <AndroidJavaLibrary Include="Jars\ktor-utils-jvm-3.0.3.jar" Condition="Exists('Jars\\ktor-utils-jvm-3.0.3.jar')" />
+    <AndroidJavaLibrary Include="Jars\ktor-events-jvm-3.0.3.jar" Condition="Exists('Jars\\ktor-events-jvm-3.0.3.jar')" />
+    <AndroidJavaLibrary Include="Jars\ktor-serialization-jvm-3.0.3.jar" Condition="Exists('Jars\\ktor-serialization-jvm-3.0.3.jar')" />
+    <!-- slf4j-api 1.7.36 is used to avoid D8 NPE with 2.x MRJARs -->
+    <AndroidJavaLibrary Include="Jars\slf4j-api-1.7.36.jar" Condition="Exists('Jars\\slf4j-api-1.7.36.jar')" />
+    <AndroidJavaLibrary Include="Jars\kotlinx-serialization-core-jvm-1.6.3.jar" Condition="Exists('Jars\\kotlinx-serialization-core-jvm-1.6.3.jar')" />
+    <AndroidJavaLibrary Include="Jars\kotlinx-serialization-json-jvm-1.6.3.jar" Condition="Exists('Jars\\kotlinx-serialization-json-jvm-1.6.3.jar')" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
+</Project>

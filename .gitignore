@@ -1,0 +1,39 @@
+# macOS
+.DS_Store
+
+# Visual Studio / Rider / JetBrains
+.vs/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+# Xamarin / MSBuild build outputs
+**/bin/
+**/obj/
+
+# Android / Java
+**/.gradle/
+**/build/
+*.apk
+*.aab
+*.dex
+
+# NuGet
+packages/
+*.nupkg
+.nuget/nuget.exe
+
+# Logs
+*.log
+
+# Local settings / secrets
+local.properties
+src/**/google-services.json
+src/**/appsettings.json
+
+# Crash / diagnostic dumps
+*.dmp
+*.hprof
