@@ -53,7 +53,7 @@ jobs:
 
       - name: Install Android SDK components
         run: |
-          sdkmanager --install "platforms;android-33" "build-tools;32.0.0" 2>/dev/null || true
+          sdkmanager --install "platforms;android-33" "build-tools;32.0.0"
 
       - name: Cache NuGet packages
         uses: actions/cache@v4
@@ -83,6 +83,9 @@ jobs:
             if [ -n "$APK" ]; then
               echo "apk_path=$APK" >> "$GITHUB_OUTPUT"
               echo "APK: $APK ($(du -h "$APK" | cut -f1))"
+            else
+              echo "::error::No APK found in $APK_DIR"
+              exit 1
             fi
           else
             echo "::error::Output directory not found: $APK_DIR"
@@ -96,5 +99,5 @@ jobs:
           path: |
             src/TrueMetricsSample.Droid/bin/${{ env.CONFIGURATION }}/**/*.apk
             src/TrueMetricsSample.Droid/bin/${{ env.CONFIGURATION }}/**/*.dll
-          if-no-files-found: warn
+          if-no-files-found: error
           retention-days: 14
