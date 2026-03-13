@@ -15,9 +15,45 @@ jobs:
 
     env:
       CONFIGURATION: Debug
+      ANDROID_HOME: /Users/runner/Library/Android/sdk
 
     steps:
       - uses: actions/checkout@v5
+
+      - name: Install Mono
+        run: |
+          if command -v msbuild &>/dev/null; then
+            echo "msbuild already available"
+            msbuild -version
+          else
+            echo "Installing Mono..."
+            wget -q https://download.mono-project.com/archive/6.12.0/macos-10-universal/MonoFramework-MDK-6.12.0.206.macos10.xamarin.universal.pkg -O /tmp/mono.pkg
+            sudo installer -pkg /tmp/mono.pkg -target /
+            export PATH="/Library/Frameworks/Mono.framework/Versions/Current/Commands:$PATH"
+            echo "/Library/Frameworks/Mono.framework/Versions/Current/Commands" >> $GITHUB_PATH
+            mono --version
+            msbuild -version
+          fi
+
+      - name: Install Xamarin.Android
+        run: |
+          if [ -f "/Library/Frameworks/Xamarin.Android.framework/Versions/Current/Version" ]; then
+            echo "Xamarin.Android already installed"
+            cat /Library/Frameworks/Xamarin.Android.framework/Versions/Current/Version
+          else
+            echo "Installing Xamarin.Android 13.2..."
+            wget -q https://aka.ms/xamarin-android-commercial-d17-8-macos -O /tmp/xa.pkg 2>/dev/null || \
+            wget -q https://dl.google.com/dl/android/studio/install/xamarin.android-13.2.0.0.pkg -O /tmp/xa.pkg 2>/dev/null || \
+            wget -q "https://download.visualstudio.microsoft.com/download/pr/1a3b1fa0-0649-4e9e-a3a6-1b48f78a272a/0f04a4e1064c3e1cccc2fbe6ec5b26ba/xamarin.android-13.2.2.1.pkg" -O /tmp/xa.pkg
+            sudo installer -pkg /tmp/xa.pkg -target /
+          fi
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android SDK components
+        run: |
+          sdkmanager --install "platforms;android-33" "build-tools;32.0.0" 2>/dev/null || true
 
       - name: Cache NuGet packages
         uses: actions/cache@v4
