@@ -69,6 +69,9 @@ jobs:
       - name: Build solution
         run: msbuild TrueMetricsBindingSample.sln -t:Build -p:Configuration=$CONFIGURATION -nologo -m -v:minimal
 
+      - name: Package APK
+        run: msbuild src/TrueMetricsSample.Droid/TrueMetricsSample.Droid.csproj -t:SignAndroidPackage -p:Configuration=$CONFIGURATION -nologo -v:minimal
+
       - name: Locate artifacts
         id: artifacts
         run: |
