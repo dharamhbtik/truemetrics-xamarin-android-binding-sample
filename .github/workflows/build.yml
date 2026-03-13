@@ -14,7 +14,7 @@ jobs:
     timeout-minutes: 120
 
     env:
-      CONFIGURATION: Debug
+      CONFIGURATION: Release
       ANDROID_HOME: /Users/runner/Library/Android/sdk
 
     steps:
