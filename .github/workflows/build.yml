@@ -1,0 +1,61 @@
+name: Build Xamarin Sample APK
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build APK
+    runs-on: macos-13
+    timeout-minutes: 120
+
+    env:
+      CONFIGURATION: Debug
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: nuget-${{ runner.os }}-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            nuget-${{ runner.os }}-
+
+      - name: NuGet restore
+        run: msbuild TrueMetricsBindingSample.sln -t:Restore -p:Configuration=$CONFIGURATION -nologo -v:minimal
+
+      - name: Build solution
+        run: msbuild TrueMetricsBindingSample.sln -t:Build -p:Configuration=$CONFIGURATION -nologo -m -v:minimal
+
+      - name: Locate artifacts
+        id: artifacts
+        run: |
+          APK_DIR="src/TrueMetricsSample.Droid/bin/$CONFIGURATION"
+          if [ -d "$APK_DIR" ]; then
+            echo "=== Build output ==="
+            ls -lh "$APK_DIR/"
+            APK=$(find "$APK_DIR" -name "*.apk" -type f | head -1)
+            if [ -n "$APK" ]; then
+              echo "apk_path=$APK" >> "$GITHUB_OUTPUT"
+              echo "APK: $APK ($(du -h "$APK" | cut -f1))"
+            fi
+          else
+            echo "::error::Output directory not found: $APK_DIR"
+            exit 1
+          fi
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: truemetrics-xamarin-sample-${{ env.CONFIGURATION }}
+          path: |
+            src/TrueMetricsSample.Droid/bin/${{ env.CONFIGURATION }}/**/*.apk
+            src/TrueMetricsSample.Droid/bin/${{ env.CONFIGURATION }}/**/*.dll
+          if-no-files-found: warn
+          retention-days: 14
