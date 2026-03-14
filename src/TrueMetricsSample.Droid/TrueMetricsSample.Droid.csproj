@@ -226,10 +226,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <AndroidLibrary Include="/Users/dkumar/Library/Caches/XamarinBuildDownload/playserviceslocation-21.3.0/playserviceslocation-21.3.0.aar" Condition="Exists('/Users/dkumar/Library/Caches/XamarinBuildDownload/playserviceslocation-21.3.0/playserviceslocation-21.3.0.aar')" />
-    <AndroidLibrary Include="/Users/dkumar/Library/Caches/XamarinBuildDownload/playservicesbase-18.9.0/playservicesbase-18.9.0.aar" Condition="Exists('/Users/dkumar/Library/Caches/XamarinBuildDownload/playservicesbase-18.9.0/playservicesbase-18.9.0.aar')" />
-    <AndroidLibrary Include="/Users/dkumar/Library/Caches/XamarinBuildDownload/playservicesbasement-18.9.0/playservicesbasement-18.9.0.aar" Condition="Exists('/Users/dkumar/Library/Caches/XamarinBuildDownload/playservicesbasement-18.9.0/playservicesbasement-18.9.0.aar')" />
-    <AndroidLibrary Include="/Users/dkumar/Library/Caches/XamarinBuildDownload/playservicestasks-18.4.0/playservicestasks-18.4.0.aar" Condition="Exists('/Users/dkumar/Library/Caches/XamarinBuildDownload/playservicestasks-18.4.0/playservicestasks-18.4.0.aar')" />
+    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\play-services-location-21.3.0.aar" />
+    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\play-services-base-18.9.0.aar" />
+    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\play-services-basement-18.9.0.aar" />
+    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\play-services-tasks-18.4.0.aar" />
   </ItemGroup>
 
   <ItemGroup>
