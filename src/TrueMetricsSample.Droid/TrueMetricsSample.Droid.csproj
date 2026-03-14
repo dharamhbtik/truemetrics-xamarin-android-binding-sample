@@ -165,7 +165,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(UseVendorMavenDeps)' == 'true'">
-    <!-- Vendor Maven-aligned AndroidX/SQLite/Room/DataStore/SQLCipher dependencies for TrueMetrics 1.4.3 -->
+    <!-- Vendor Maven-aligned AndroidX/SQLite/Room/DataStore/SQLCipher dependencies for TrueMetrics 1.4.5 -->
     <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\lifecycle-process-2.2.0.aar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\lifecycle-process-2.2.0.aar')" />
     <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\startup-runtime-1.2.0.aar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\startup-runtime-1.2.0.aar')" />
     <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\work-runtime-2.9.0.aar" />
@@ -209,6 +209,8 @@
     <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\kotlinx-coroutines-android-1.10.2.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\kotlinx-coroutines-android-1.10.2.jar')" />
     <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\stately-concurrency-jvm-2.1.0.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\stately-concurrency-jvm-2.1.0.jar')" />
     <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\stately-concurrent-collections-jvm-2.1.0.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\stately-concurrent-collections-jvm-2.1.0.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\kotlinx-io-core-jvm-0.8.0.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\kotlinx-io-core-jvm-0.8.0.jar')" />
+    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\kotlinx-io-bytestring-jvm-0.8.0.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\kotlinx-io-bytestring-jvm-0.8.0.jar')" />
   </ItemGroup>
 
   <ItemGroup>
@@ -279,7 +281,7 @@
 
   <!-- kotlinx-coroutines is provided by NuGet package Xamarin.KotlinX.Coroutines.* -->
 
-  <!-- Ktor 3.0.3 — matches what truemetricssdk-1.4.3.aar was compiled against (Ktor 2.x API is INCOMPATIBLE) -->
+  <!-- Ktor 3.0.3 — matches what truemetricssdk-1.4.5.aar was compiled against (Ktor 2.x API is INCOMPATIBLE) -->
   <ItemGroup Condition="'$(UseVendorMavenDeps)' != 'true'">
     <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\ktor-client-core-jvm-3.0.3.jar" Condition="Exists('..\TrueMetricsSdk.Binding\Jars\ktor-client-core-jvm-3.0.3.jar')" />
     <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\ktor-client-android-jvm-3.0.3.jar" Condition="Exists('..\TrueMetricsSdk.Binding\Jars\ktor-client-android-jvm-3.0.3.jar')" />

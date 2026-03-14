@@ -16,6 +16,8 @@ jobs:
     env:
       CONFIGURATION: Release
       ANDROID_HOME: /Users/runner/Library/Android/sdk
+      TRUEMETRICS_API_KEY: ${{ secrets.TRUEMETRICS_API_KEY }}
+      TRUEMETRICS_SDK_VERSION: "1.4.5"
 
     steps:
       - uses: actions/checkout@v5
@@ -62,6 +64,33 @@ jobs:
           key: nuget-${{ runner.os }}-${{ hashFiles('**/*.csproj') }}
           restore-keys: |
             nuget-${{ runner.os }}-
+
+      - name: Download TrueMetrics SDK AAR
+        run: |
+          AAR_PATH="src/TrueMetricsSdk.Binding/Jars/truemetricssdk-${TRUEMETRICS_SDK_VERSION}.aar"
+          if [ -f "$AAR_PATH" ]; then
+            echo "AAR already exists: $(du -h "$AAR_PATH" | cut -f1)"
+          else
+            MAVEN_URL="https://raw.githubusercontent.com/TRUE-Metrics-io/truemetrics_android_SDK_p_maven/main/io/truemetrics/truemetricssdk/${TRUEMETRICS_SDK_VERSION}/truemetricssdk-${TRUEMETRICS_SDK_VERSION}.aar"
+            echo "Downloading from $MAVEN_URL"
+            curl -sLf "$MAVEN_URL" -o "$AAR_PATH"
+            echo "Downloaded: $(du -h "$AAR_PATH" | cut -f1)"
+          fi
+
+      - name: Inject SDK API key
+        run: |
+          # Local: .secrets.properties, CI: env var
+          if [ -f .secrets.properties ]; then
+            API_KEY=$(grep -v '^#' .secrets.properties | grep 'TRUEMETRICS_API_KEY=' | tail -1 | cut -d= -f2-)
+          fi
+          API_KEY="${API_KEY:-$TRUEMETRICS_API_KEY}"
+          if [ -n "$API_KEY" ]; then
+            sed -i '' "s/INJECT_API_KEY/$API_KEY/g" src/TrueMetricsSample/Helpers/Constants.cs
+            echo "API key injected (${#API_KEY} chars)"
+          else
+            echo "::warning::No API key found — APK will have placeholder"
+          fi
+
 
       - name: NuGet restore
         run: msbuild TrueMetricsBindingSample.sln -t:Restore -p:Configuration=$CONFIGURATION -nologo -v:minimal

@@ -141,7 +141,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <LibraryProjectZip Include="Jars\truemetricssdk-1.4.3.aar" />
+    <LibraryProjectZip Include="Jars\truemetricssdk-1.4.5.aar" />
     <LibraryProjectZip Include="Jars\timber-5.0.1.aar" />
   </ItemGroup>
 
@@ -168,7 +168,7 @@
 
   <!-- kotlinx-coroutines is provided by NuGet package Xamarin.KotlinX.Coroutines.* -->
 
-  <!-- Vendor mode: Ktor 3.3.0 / Serialization 1.9.0 (matches published Maven metadata for 1.4.3) -->
+  <!-- Vendor mode: Ktor 3.3.0 / Serialization 1.9.0 (matches published Maven metadata for 1.4.5) -->
   <ItemGroup Condition="'$(UseVendorMavenDeps)' == 'true'">
     <AndroidJavaLibrary Include="Jars\vendor\ktor-client-core-jvm-3.3.0.jar" Condition="Exists('Jars\\vendor\\ktor-client-core-jvm-3.3.0.jar')" />
     <AndroidJavaLibrary Include="Jars\vendor\ktor-client-android-jvm-3.3.0.jar" Condition="Exists('Jars\\vendor\\ktor-client-android-jvm-3.3.0.jar')" />
@@ -186,6 +186,8 @@
     <AndroidJavaLibrary Include="Jars\vendor\kotlinx-coroutines-core-jvm-1.10.2.jar" Condition="Exists('Jars\\vendor\\kotlinx-coroutines-core-jvm-1.10.2.jar')" />
     <AndroidJavaLibrary Include="Jars\vendor\stately-concurrency-jvm-2.1.0.jar" Condition="Exists('Jars\\vendor\\stately-concurrency-jvm-2.1.0.jar')" />
     <AndroidJavaLibrary Include="Jars\vendor\stately-concurrent-collections-jvm-2.1.0.jar" Condition="Exists('Jars\\vendor\\stately-concurrent-collections-jvm-2.1.0.jar')" />
+    <AndroidJavaLibrary Include="Jars\vendor\kotlinx-io-core-jvm-0.8.0.jar" Condition="Exists('Jars\\vendor\\kotlinx-io-core-jvm-0.8.0.jar')" />
+    <AndroidJavaLibrary Include="Jars\vendor\kotlinx-io-bytestring-jvm-0.8.0.jar" Condition="Exists('Jars\\vendor\\kotlinx-io-bytestring-jvm-0.8.0.jar')" />
   </ItemGroup>
 
   <!-- Non-vendor mode: legacy jars used during earlier investigation -->

@@ -31,6 +31,10 @@ packages/
 
 # Local settings / secrets
 local.properties
+.secrets.properties
+
+# TrueMetrics SDK AAR (downloaded from Maven at build time)
+src/TrueMetricsSdk.Binding/Jars/truemetricssdk-*.aar
 src/**/google-services.json
 src/**/appsettings.json
 
