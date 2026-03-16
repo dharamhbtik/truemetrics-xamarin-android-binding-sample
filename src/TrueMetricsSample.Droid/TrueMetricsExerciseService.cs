@@ -458,10 +458,10 @@ namespace TrueMetricsSample.Droid
                     }
 
                     Log("--- Sensor #" + (i + 1) + " ---");
-                    Log("Sensor: " + (stat.SensorName?.ToString() ?? string.Empty));
-                    Log("Configured: " + stat.ConfiguredFrequencyHz + " Hz");
-                    Log("Actual: " + stat.ActualFrequencyHz + " Hz");
-                    Log("Quality: " + stat.Quality);
+                   // Log("Sensor: " + (stat.SensorName?.ToString() ?? string.Empty));
+                   // Log("Configured: " + stat.ConfiguredFrequencyHz + " Hz");
+                    //Log("Actual: " + stat.ActualFrequencyHz + " Hz");
+                    //Log("Quality: " + stat.Quality);
                 }
 
                 Log("State(after SensorStatistics): " + await SnapshotStateAsync().ConfigureAwait(false));

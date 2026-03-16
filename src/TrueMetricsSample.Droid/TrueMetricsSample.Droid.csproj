@@ -23,6 +23,8 @@
     <AndroidStoreUncompressedFileExtensions></AndroidStoreUncompressedFileExtensions>
     <JavaOptions></JavaOptions>
     <UseVendorMavenDeps>true</UseVendorMavenDeps>
+    <UseVendorLifecycleProcess>false</UseVendorLifecycleProcess>
+    <UseVendorSqlite>false</UseVendorSqlite>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -72,7 +74,6 @@
     <AndroidEnableMultiDex></AndroidEnableMultiDex>
     <AndroidFastDeploymentType></AndroidFastDeploymentType>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <AndroidDexTool></AndroidDexTool>
     <NoWarn></NoWarn>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -155,6 +156,9 @@
     <PackageReference Include="Xamarin.AndroidX.AppCompat.AppCompatResources" Version="1.6.1.7" />
     <PackageReference Include="Xamarin.AndroidX.RecyclerView" Version="1.2.1.5" />
     <PackageReference Include="Xamarin.Google.Android.Material" Version="1.4.0.2" />
+    <PackageReference Include="Xamarin.AndroidX.Room.Runtime" Version="2.5.2.1" Condition="'$(UseVendorMavenDeps)' == 'true'" />
+    <PackageReference Include="Xamarin.AndroidX.Room.Ktx" Version="2.5.2.1" Condition="'$(UseVendorMavenDeps)' == 'true'" />
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.Process" Version="2.8.7.3" Condition="'$(UseVendorMavenDeps)' == 'true'" />
     <!-- Upgraded to 1.7.3.2 which depends on Xamarin.Kotlin.StdLib >= 1.9.0.x -->
     <PackageReference Include="Xamarin.KotlinX.Coroutines.Core.Jvm" Version="1.7.3.2" Condition="'$(UseVendorMavenDeps)' != 'true'" />
     <PackageReference Include="Xamarin.KotlinX.Coroutines.Android" Version="1.7.3.2" Condition="'$(UseVendorMavenDeps)' != 'true'" />
@@ -165,20 +169,15 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(UseVendorMavenDeps)' == 'true'">
-    <!-- Vendor Maven-aligned AndroidX/SQLite/Room/DataStore/SQLCipher dependencies for TrueMetrics 1.4.3 -->
-    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\lifecycle-process-2.2.0.aar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\lifecycle-process-2.2.0.aar')" />
+    <!-- Vendor Maven-aligned AndroidX/SQLite/Room/DataStore/SQLCipher dependencies for TrueMetrics 1.4.1 -->
     <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\startup-runtime-1.2.0.aar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\startup-runtime-1.2.0.aar')" />
     <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\work-runtime-2.9.0.aar" />
     <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\work-runtime-ktx-2.9.0.aar" />
-    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\room-runtime-2.4.3.aar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\room-runtime-2.4.3.aar')" />
-    <AndroidLibrary Include="$(NuGetPackageRoot)xamarin.androidx.room.runtime/2.3.0.5/aar/androidx.room.room-runtime.aar" Condition="!Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\room-runtime-2.4.3.aar') And Exists('$(NuGetPackageRoot)xamarin.androidx.room.runtime/2.3.0.5/aar/androidx.room.room-runtime.aar')" />
-    <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\room-common-2.4.3.jar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\room-common-2.4.3.jar')" />
-    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\room-ktx-2.7.2.aar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\room-ktx-2.7.2.aar')" />
-    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\sqlite-ktx-2.5.2.aar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\sqlite-ktx-2.5.2.aar')" />
-    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\sqlite-framework-android-2.5.2.aar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\sqlite-framework-android-2.5.2.aar')" />
-    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\sqlite-framework-2.5.2.aar" Condition="!Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\sqlite-framework-android-2.5.2.aar') And Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\sqlite-framework-2.5.2.aar')" />
-    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\sqlite-android-2.5.2.aar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\sqlite-android-2.5.2.aar')" />
-    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\sqlite-2.5.2.aar" Condition="!Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\sqlite-android-2.5.2.aar') And Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\sqlite-2.5.2.aar')" />
+    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\sqlite-ktx-2.5.2.aar" Condition="'$(UseVendorSqlite)' == 'true' And Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\sqlite-ktx-2.5.2.aar')" />
+    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\sqlite-framework-android-2.5.2.aar" Condition="'$(UseVendorSqlite)' == 'true' And Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\sqlite-framework-android-2.5.2.aar')" />
+    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\sqlite-framework-2.5.2.aar" Condition="'$(UseVendorSqlite)' == 'true' And !Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\sqlite-framework-android-2.5.2.aar') And Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\sqlite-framework-2.5.2.aar')" />
+    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\sqlite-android-2.5.2.aar" Condition="'$(UseVendorSqlite)' == 'true' And Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\sqlite-android-2.5.2.aar')" />
+    <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\sqlite-2.5.2.aar" Condition="'$(UseVendorSqlite)' == 'true' And !Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\sqlite-android-2.5.2.aar') And Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\sqlite-2.5.2.aar')" />
     <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\datastore-core-1.1.7.aar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\datastore-core-1.1.7.aar')" />
     <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\datastore-preferences-1.1.7.aar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\datastore-preferences-1.1.7.aar')" />
     <AndroidLibrary Include="..\TrueMetricsSdk.Binding\Jars\vendor\sqlcipher-android-4.9.0.aar" Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\vendor\\sqlcipher-android-4.9.0.aar')" />
@@ -264,6 +263,22 @@
     </ItemGroup>
   </Target>
 
+  <Target Name="RemoveNuGetLifecycleProcessInVendorMode" BeforeTargets="_ResolveLibraryProjectImports" Condition="'$(UseVendorMavenDeps)' == 'true' And '$(UseVendorLifecycleProcess)' == 'true'">
+    <ItemGroup>
+      <AndroidLibrary Remove="@(AndroidLibrary)" Condition="($([System.String]::Copy('%(AndroidLibrary.Identity)').Contains('/.nuget/packages/')) Or $([System.String]::Copy('%(AndroidLibrary.Identity)').Contains('\\.nuget\\packages\\'))) And $([System.String]::Copy('%(AndroidLibrary.Identity)').Contains('lifecycle-process'))" />
+      <AndroidAarLibrary Remove="@(AndroidAarLibrary)" Condition="($([System.String]::Copy('%(AndroidAarLibrary.Identity)').Contains('/.nuget/packages/')) Or $([System.String]::Copy('%(AndroidAarLibrary.Identity)').Contains('\\.nuget\\packages\\'))) And $([System.String]::Copy('%(AndroidAarLibrary.Identity)').Contains('lifecycle-process'))" />
+      <XamarinBuildDownloadAndroidAarLibrary Remove="@(XamarinBuildDownloadAndroidAarLibrary)" Condition="($([System.String]::Copy('%(XamarinBuildDownloadAndroidAarLibrary.Identity)').Contains('/.nuget/packages/')) Or $([System.String]::Copy('%(XamarinBuildDownloadAndroidAarLibrary.Identity)').Contains('\\.nuget\\packages\\'))) And $([System.String]::Copy('%(XamarinBuildDownloadAndroidAarLibrary.Identity)').Contains('lifecycle-process'))" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="RemoveNuGetStartupRuntimeInVendorMode" BeforeTargets="_ResolveLibraryProjectImports" Condition="'$(UseVendorMavenDeps)' == 'true'">
+    <ItemGroup>
+      <AndroidLibrary Remove="@(AndroidLibrary)" Condition="($([System.String]::Copy('%(AndroidLibrary.Identity)').Contains('/.nuget/packages/')) Or $([System.String]::Copy('%(AndroidLibrary.Identity)').Contains('\\.nuget\\packages\\'))) And $([System.String]::Copy('%(AndroidLibrary.Identity)').Contains('startup-runtime'))" />
+      <AndroidAarLibrary Remove="@(AndroidAarLibrary)" Condition="($([System.String]::Copy('%(AndroidAarLibrary.Identity)').Contains('/.nuget/packages/')) Or $([System.String]::Copy('%(AndroidAarLibrary.Identity)').Contains('\\.nuget\\packages\\'))) And $([System.String]::Copy('%(AndroidAarLibrary.Identity)').Contains('startup-runtime'))" />
+      <XamarinBuildDownloadAndroidAarLibrary Remove="@(XamarinBuildDownloadAndroidAarLibrary)" Condition="($([System.String]::Copy('%(XamarinBuildDownloadAndroidAarLibrary.Identity)').Contains('/.nuget/packages/')) Or $([System.String]::Copy('%(XamarinBuildDownloadAndroidAarLibrary.Identity)').Contains('\\.nuget\\packages\\'))) And $([System.String]::Copy('%(XamarinBuildDownloadAndroidAarLibrary.Identity)').Contains('startup-runtime'))" />
+    </ItemGroup>
+  </Target>
+
   <ItemGroup Condition="Exists('..\\TrueMetricsSdk.Binding\\Jars\\timber-5.0.1.aar')">
     <AndroidLibrary Include="..\\TrueMetricsSdk.Binding\\Jars\\timber-5.0.1.aar" />
   </ItemGroup>
@@ -279,7 +294,7 @@
 
   <!-- kotlinx-coroutines is provided by NuGet package Xamarin.KotlinX.Coroutines.* -->
 
-  <!-- Ktor 3.0.3 — matches what truemetricssdk-1.4.3.aar was compiled against (Ktor 2.x API is INCOMPATIBLE) -->
+  <!-- Ktor 3.0.3 — matches what truemetricssdk-1.4.1.aar was compiled against (Ktor 2.x API is INCOMPATIBLE) -->
   <ItemGroup Condition="'$(UseVendorMavenDeps)' != 'true'">
     <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\ktor-client-core-jvm-3.0.3.jar" Condition="Exists('..\TrueMetricsSdk.Binding\Jars\ktor-client-core-jvm-3.0.3.jar')" />
     <AndroidJavaLibrary Include="..\TrueMetricsSdk.Binding\Jars\ktor-client-android-jvm-3.0.3.jar" Condition="Exists('..\TrueMetricsSdk.Binding\Jars\ktor-client-android-jvm-3.0.3.jar')" />
