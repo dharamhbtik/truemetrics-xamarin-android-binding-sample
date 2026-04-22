@@ -17,7 +17,7 @@ jobs:
       CONFIGURATION: Release
       ANDROID_HOME: /Users/runner/Library/Android/sdk
       TRUEMETRICS_API_KEY: ${{ secrets.TRUEMETRICS_API_KEY }}
-      TRUEMETRICS_SDK_VERSION: "1.5.0"
+      TRUEMETRICS_SDK_VERSION: "1.5.4"
 
     steps:
       - uses: actions/checkout@v5
